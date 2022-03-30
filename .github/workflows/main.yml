@@ -14,9 +14,9 @@ jobs:
         with:
           flutter-version: '2.8.0'
       - name: Setting .env
-        run :
+        run : |
           echo "TEMP_GOOGLE_KEY=${{ secrets.TEMP_GOOGLE_KEY}}" >> .env
-        cat .env
+          cat .env
       - run: flutter pub get
       - run: flutter test
       - run: flutter build apk --debug
