@@ -1,5 +1,6 @@
+# push 동작을 할떄 동작하도록
 on: push
-name: Test, Build and Release apk
+name: Test and Make Debug APK
 jobs:
   build:
     name: Build APK
@@ -13,12 +14,14 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.8.0'
+      # env 파일 생성로직..
       - name: Setting .env
         run : |
           echo "TEMP_GOOGLE_KEY=${{ secrets.TEMP_GOOGLE_KEY}}" >> .env
           cat .env
       - run: flutter pub get
       - run: flutter test
+      # apk 작성
       - run: flutter build apk --debug
       - name: Create a Release APK
         uses: ncipollo/release-action@v1
