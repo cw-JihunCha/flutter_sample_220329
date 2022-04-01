@@ -15,8 +15,8 @@ jobs:
         with:
           flutter-version: '2.8.0'
       # google-json test
-#      - name: Make google-services.json
-#        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
+      - name: Make google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > android/app/google-services.json
       # env 파일 생성로직..
       - name: Setting .env
         run : |
