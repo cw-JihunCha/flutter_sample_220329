@@ -39,6 +39,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_TEST_KEY }}'
           expires: 7d
           projectId: FlutterSampleApp
+          path: "android/app/google-services.json"
           channelId: preview
 
 #      - run: flutter build apk
