@@ -35,8 +35,8 @@ jobs:
       - name: Deploy Preview Channel
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_TEST_KEY }}'
+          repoToken: ${{ secrets.TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_TEST_KEY }}
           expires: 7d
           projectId: fluttersampleapp-41c6e
           channelId: preview
