@@ -39,7 +39,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_TEST_KEY }}'
           expires: 7d
           projectId: FlutterSampleApp
-          entryPoint: "/home/runner/work/flutter_sample_220329/flutter_sample_220329"
+          entryPoint: "android/app"
           channelId: preview
 
 #      - run: flutter build apk
