@@ -41,8 +41,8 @@ jobs:
 #          name: apk-debug
 #          path: build/app/outputs/apk/debug/app-debug.apk
 
-      - name: Upload Android Beta to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.0.0
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: '1:872176701007:android:ac71f2322624b51bbd243a'
           token: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FLUTTERSAMPLEAPP_41C6E }}'
