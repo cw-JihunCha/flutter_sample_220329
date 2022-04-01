@@ -24,13 +24,22 @@ jobs:
           cat .env
       - run: flutter pub get
       - run: flutter test
+
       # apk 작성
-      - run: flutter build apk --debug
-      - name: Create a Release APK
+      - name: build apk
+        run: flutter build apk --debug
+
+      - name: Create apk(?)
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/debug/*.apk"
           token: ${{ secrets.TOKEN }}
+
+      - name: upload artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: apk-debug
+          path: build/app/outputs/apk/debug/app-debug.apk
 
         # test...
 #      - name: testing..
