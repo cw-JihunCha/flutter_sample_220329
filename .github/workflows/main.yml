@@ -93,7 +93,7 @@ jobs:
       #        run: flutter build ios --debug --no-codesign
 
       - name: Build iOS App
-        run: flutter build ios --no-codesign
+        run: flutter build ios --debug --no-codesign
 #        run: |
 #          flutter build ios --no-codesign
 #          cd build/ios/iphoneos
