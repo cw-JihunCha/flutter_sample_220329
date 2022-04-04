@@ -31,10 +31,6 @@ jobs:
       - name: build apk
         run: flutter build apk --debug
 
-      # 테스트 코드 입력
-      - name: build ipa
-        run: flutter build ipa --debug
-
       #      - name: Create apk(?)
 #        uses: ncipollo/release-action@v1
 #        with:
@@ -82,7 +78,24 @@ jobs:
 #      - run: flutter build apk
 
 
-#  beta_apk:
+  build_ipa:
+    name: set environment
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter test
+
+      - name : build ipa
+        run: flutter build ios --debug --no-codesign
+
+
+
+
+  #  beta_apk:
 #    name: Upload Android Beta to Firebase App Distribution
 #    needs: [ build ]
 #    runs-on: ubuntu-latest
