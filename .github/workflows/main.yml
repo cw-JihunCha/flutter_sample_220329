@@ -33,7 +33,7 @@ jobs:
 
       # 테스트 코드 입력
       - name: build ipa
-        run: flutter build ios --debug --no-codesign
+        run: flutter build ipa --debug
 
       #      - name: Create apk(?)
 #        uses: ncipollo/release-action@v1
