@@ -31,7 +31,11 @@ jobs:
       - name: build apk
         run: flutter build apk --debug
 
-#      - name: Create apk(?)
+      # 테스트 코드 입력
+      - name: build ipa
+        run: flutter build ios --debug --no-codesign
+
+      #      - name: Create apk(?)
 #        uses: ncipollo/release-action@v1
 #        with:
 #          artifacts: "build/app/outputs/apk/debug/*.apk"
