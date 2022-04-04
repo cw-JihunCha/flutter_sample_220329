@@ -87,7 +87,7 @@ jobs:
         with:
           channel: 'stable'
 #      - run: rm -r ~/.pub-cache
-      - run: xcodebuild -create-xcframework -framework
+#      - run: xcodebuild -create-xcframework -framework
       - run: flutter pub get
       - run: flutter test
 
