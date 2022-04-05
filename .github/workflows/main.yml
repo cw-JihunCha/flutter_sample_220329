@@ -88,13 +88,10 @@ jobs:
 
     env:
       SHEME: Runner
-      BUILD_CONFIGURATION: Debug
+      BUILD_CONFIGURATION: Release
 
     steps:
       - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
 
@@ -116,11 +113,15 @@ jobs:
                mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
                cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
       - run: flutter pub get
       - run: flutter test
 
       - name: Build Flutter
-        run: flutter build ios --debug
+        run: flutter build ios --release --no-codesign
 
       #      - env:
       #          ENCRYPTED_CERT_FILE_PATH: ${{ '.github/secrets/CertificateSigningRequest.certSigningRequest.gpg' }}
