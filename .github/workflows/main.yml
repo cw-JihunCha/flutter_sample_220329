@@ -89,8 +89,12 @@ jobs:
     env:
       SHEME: Runner
       BUILD_CONFIGURATION: Release
+      XC_VERSION: ${{ '13.2' }}
 
     steps:
+      - name: Select latest Xcode
+        run: "sudo xcode-select -s /Applications/Xcode_$XC_VERSION.app"
+
       - uses: actions/checkout@v2
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
