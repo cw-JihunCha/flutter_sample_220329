@@ -81,6 +81,15 @@ jobs:
   build_ipa:
     name: set environment
     runs-on: macos-latest
+#    env:
+#      XC_WORKSPACE: ${{ 'ios/Runner.xcworkspace' }}
+#      XC_SCHEME: ${{ 'ios/Runner' }}
+#      XC_ARCHIVE: ${{ 'ios/Runner.xcarchive' }}
+
+    env:
+      SHEME: Runner
+      BUILD_CONFIGURATION: Debug
+
     steps:
       - uses: actions/checkout@v2
       - uses: subosito/flutter-action@v2
@@ -88,8 +97,47 @@ jobs:
           channel: 'stable'
 #      - run: rm -r ~/.pub-cache
 #      - run: xcodebuild -create-xcframework -framework
+
+      - name: Install Apple Certificate
+        uses: apple-actions/import-codesign-certs@v1
+        with:
+          p12-file-base64: ${{ secrets.CERTI_BASE }}
+          p12-password: ${{ secrets.APPLE_SECRETS }}
+
       - run: flutter pub get
       - run: flutter test
+
+#      - env:
+#          ENCRYPTED_CERT_FILE_PATH: ${{ '.github/secrets/CertificateSigningRequest.certSigningRequest.gpg' }}
+#          DECRYPTED_CERT_FILE_PATH: ${{ '.github/secrets/CertificateSigningRequest.certSigningRequest.p12' }}
+#
+#          ENCRYPTED_PROVISION_FILE_PATH: ${{ '.github/secrets/test1.mobileprovision.gpg' }}
+#          DECRYPTED_PROVISION_FILE_PATH: ${{ '.github/secrets/test1.mobileprovision' }}
+#
+#          # certification export key
+#          CERT_EXPORT_KEY: ${{ secrets.APPLE_SECRETS }}
+#
+#      # 証明書の生成
+#      - name: Import Provisioning Profile
+#        run: | # 複数行の run を書きたい場合はこうする 以下、Provisioning Profilesを置くべきディレクトリにデコードしている
+##          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+##          echo -n ${{ secrets.PROVISIONING_PROFILE }} | base64 -d > ~/Library/MobileDevice/Provisioning\ Profiles/distribution.mobileprovision
+#          gpg -d -o "$DECRYPTED_CERT_FILE_PATH" --pinentry-mode=loopback --passphrase "$CERT_ENCRYPTION_KEY" "$ENCRYPTED_CERT_FILE_PATH"
+#          gpg -d -o "$DECRYPTED_PROVISION_FILE_PATH" --pinentry-mode=loopback --passphrase "$PROVISIONING_ENCRYPTION_KEY" "$ENCRYPTED_PROVISION_FILE_PATH"
+#
+#
+#      # 署名をする
+#      - name: Import Code-Signing Certificates
+#        uses: Apple-Actions/import-codesign-certs@v1 # 外部パッケージを使っている
+#        with:
+#          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+#          p12-password: ${{ secrets.CERTIFICATE_PASSWORD }}
+#
+#      # ipa ファイルの出力
+#      - name: Create ipa file
+#        # GITHUB_RUN_NUMBER をビルドナンバーに指定することで被りがないようにしている。
+#        run: flutter build ipa --export-options-plist=ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
+
 
 #      - run: rm -r ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
@@ -100,8 +148,8 @@ jobs:
 #        run: |
 #          xcodebuild clean test -project ios/Runner.xcodeproj -scheme ios -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
 
-      - name: Build iOS App
-        run: flutter build ios --debug --export-options-plist=ios/exportOptions.plist
+#      - name: Build iOS App
+#        run: flutter build ios --debug --export-options-plist=ios/exportOptions.plist
 
   #        run: |
 #          flutter build ios --no-codesign
