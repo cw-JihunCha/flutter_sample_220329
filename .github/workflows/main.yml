@@ -91,6 +91,8 @@ jobs:
       - run: flutter pub get
       - run: flutter test
 
+      - run: rm -r ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
       #      - name : build ipa
       #        run: flutter build ios --debug --no-codesign
 
