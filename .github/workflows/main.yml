@@ -140,7 +140,10 @@ jobs:
 
 
       - name: Export ipa
-        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
+        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath . -allowProvisioningUpdates
+#        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
+
+
 
       - name: Publish iOS Artefacts
         uses: actions/upload-artifact@v1
