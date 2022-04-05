@@ -96,6 +96,10 @@ jobs:
       #      - name : build ipa
       #        run: flutter build ios --debug --no-codesign
 
+      - name: Start xcode build 🛠
+        run: |
+        xcodebuild clean test -project ios/Runner.xcodeproj -scheme ios -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=14.4'
+
 
       - name: Build iOS App
         run: flutter build ios --debug
