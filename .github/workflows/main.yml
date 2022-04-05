@@ -89,7 +89,7 @@ jobs:
     env:
       SHEME: Runner
       BUILD_CONFIGURATION: Release
-      XC_VERSION: ${{ '13.3' }}
+      XC_VERSION: ${{ '13.2' }}
 
     steps:
       - name: Select latest Xcode
@@ -120,7 +120,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-
+      - run: flutter run
       - run: flutter pub get
       - run: flutter test
 
