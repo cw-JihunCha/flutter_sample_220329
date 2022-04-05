@@ -120,7 +120,7 @@ jobs:
       - run: flutter test
 
       - name: Build Flutter
-        run: flutter build ios --debug --no-codesign
+        run: flutter build ios --debug
 
       #      - env:
       #          ENCRYPTED_CERT_FILE_PATH: ${{ '.github/secrets/CertificateSigningRequest.certSigningRequest.gpg' }}
