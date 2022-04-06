@@ -138,12 +138,13 @@ jobs:
                mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
                cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
-      - name: pod install
-        run : |
-          cd ios
-          pod deintegrate
-          pod install
-          cd ..
+#      - name: pod install
+#        run : |
+#          cd ios
+#          pod deintegrate
+#          pod install
+#          cd ..
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
@@ -155,7 +156,7 @@ jobs:
       - run: flutter test
 
       - name: Build Flutter
-        run: flutter build ios --debug
+        run: flutter build ios --debug --no-codesign
 
       - name: Build resolve Swift dependencies
         run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }}
@@ -172,8 +173,6 @@ jobs:
       - name: Export ipa
         run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportOptionsPlist ExportOptions.plist -exportPath . -allowProvisioningUpdates
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
-
-
 
       - name: Publish iOS Artefacts
         uses: actions/upload-artifact@v1
