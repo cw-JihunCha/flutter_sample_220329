@@ -99,6 +99,12 @@ jobs:
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
 
+      - name: Run tests
+        run: |
+          cd ios
+          pod install --repo-update --clean-install
+          cd..
+
       - name: Install Apple Certificate
         uses: apple-actions/import-codesign-certs@v1
         with:
