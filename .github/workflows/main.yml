@@ -89,7 +89,7 @@ jobs:
     env:
       SHEME: Runner
       BUILD_CONFIGURATION: Debug
-      XC_VERSION: ${{ '13.2' }}
+      XC_VERSION: ${{ '13.1' }}
 
     steps:
       - name: Select latest Xcode
