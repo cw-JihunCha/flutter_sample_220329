@@ -133,6 +133,7 @@ jobs:
           p12-file-base64: ${{ secrets.CERTI_BASE_SECOND }}
           p12-password: ${{ secrets.APPLE_SECRETS }}
 
+
       - name: Install the provisioning profile
         env:
           PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISION_BASE }}
