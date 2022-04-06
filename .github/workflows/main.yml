@@ -170,7 +170,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: debug-ios
-          path: app.ipa
+          path: build/ios/iphoneos/app.ipa
 
 #####################################################
 
