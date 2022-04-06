@@ -130,7 +130,7 @@ jobs:
       - name: Install Apple Certificate
         uses: apple-actions/import-codesign-certs@v1
         with:
-          p12-file-base64: ${{ secrets.CERTI_BASE }}
+          p12-file-base64: ${{ secrets.CERTI_BASE_SECOND }}
           p12-password: ${{ secrets.APPLE_SECRETS }}
 
       - name: Install the provisioning profile
