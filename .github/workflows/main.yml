@@ -50,7 +50,7 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN}}
           groups: testers
           #          file: build/app/outputs/apk/debug/*.apk
-          file: build/app/outputs/flutter-apk/app-debug.apk
+          file: build/app/outputs/apk/debug/app-debug.apk
 
         # test...
       #      - name: testing..
@@ -99,12 +99,6 @@ jobs:
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
 
-      - name: Run tests
-        run: |
-          cd ios
-          pod install --repo-update --clean-install
-          cd..
-
       - name: Install Apple Certificate
         uses: apple-actions/import-codesign-certs@v1
         with:
@@ -142,7 +136,7 @@ jobs:
 #          xcodebuild -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }} DEVELOPMENT_TEAM=${{ env.TEAM_ID }} -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive PROVISIONING_PROFILE=106bdc42-25d3-4f77-a431-e69c56fc0b49 clean archive CODE_SIGN_IDENTITY="Apple Distribution: Damien Aicheh"
       - name: xArchive test
         run : |
-          xcodebuild -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} DEVELOPMENT_TEAM=${{ env.TEAM_ID }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
+          xcodebuild -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
 
 
       - name: Export ipa
