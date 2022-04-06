@@ -155,6 +155,16 @@ jobs:
       - run: flutter pub get
       - run: flutter test
 
+      - name: Build iOS App
+        run: |
+          flutter build ios --debug --no-codesign
+          cd build/ios/iphoneos
+          mkdir Payload
+          cd Payload
+          ln -s ../Runner.app
+          cd ..
+          zip -r app.ipa Payload
+
       - name: Build Flutter
         run: flutter build ios --debug --no-codesign
 
