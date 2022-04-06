@@ -100,6 +100,11 @@ jobs:
 
       - uses: actions/checkout@v2
 
+      - name: Check Swift package dependencies
+        uses: MarcoEidinger/swift-package-dependencies-check@1.0.0
+        with:
+          isMutating: true
+
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
 
