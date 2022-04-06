@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         // 뭐가 문제일까.
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: '고고고고고'),
+      home: const MyHomePage(title: '테스트중..'),
     );
   }
 }
