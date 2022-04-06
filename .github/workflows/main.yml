@@ -132,7 +132,7 @@ jobs:
       - run: flutter test
 
       - name: Build Flutter
-        run: flutter build ios --debug --no-codesign
+        run: flutter build ios --debug
 
       - name: Build resolve Swift dependencies
         run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }}
