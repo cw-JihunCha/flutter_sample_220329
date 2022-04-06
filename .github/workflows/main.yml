@@ -155,22 +155,22 @@ jobs:
       - run: flutter pub get
       - run: flutter test
 
-      - name: Build iOS App
-        run: |
-          flutter build ios --debug --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cd Payload
-          ln -s ../Runner.app
-          cd ..
-          zip -r app.ipa Payload
-          pwd
-
-      - name: Publish iOS Artefacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: debug-ios
-          path: build/ios/iphoneos/app.ipa
+#      - name: Build iOS App
+#        run: |
+#          flutter build ios --debug --no-codesign
+#          cd build/ios/iphoneos
+#          mkdir Payload
+#          cd Payload
+#          ln -s ../Runner.app
+#          cd ..
+#          zip -r app.ipa Payload
+#          pwd
+#
+#      - name: Publish iOS Artefacts
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: debug-ios
+#          path: build/ios/iphoneos/app.ipa
 
 #      - name: Firebase App Distribution
 #        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
@@ -183,28 +183,28 @@ jobs:
 
 #####################################################
 
-#      - name: Build Flutter
-#        run: flutter build ios --debug --no-codesign
+      - name: Build Flutter
+        run: flutter build ios --debug --no-codesign
+
+      - name: Build resolve Swift dependencies
+        run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }}
+
+      # 여기가안됨...
+#      - name: Build xArchive
+#        run: |
+#          xcodebuild -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }} DEVELOPMENT_TEAM=${{ env.TEAM_ID }} -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive PROVISIONING_PROFILE=106bdc42-25d3-4f77-a431-e69c56fc0b49 clean archive CODE_SIGN_IDENTITY="Apple Distribution: Damien Aicheh"
 #
-#      - name: Build resolve Swift dependencies
-#        run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }}
-#
-#      # 여기가안됨...
-##      - name: Build xArchive
-##        run: |
-##          xcodebuild -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }} DEVELOPMENT_TEAM=${{ env.TEAM_ID }} -sdk 'iphoneos' -destination 'generic/platform=iOS' -archivePath build-output/app.xcarchive PROVISIONING_PROFILE=106bdc42-25d3-4f77-a431-e69c56fc0b49 clean archive CODE_SIGN_IDENTITY="Apple Distribution: Damien Aicheh"
-##
 #      - name: Building IPA
 #        run: flutter build ipa --debug --export-options-plist=ios/ExportOptions.plist
-#
-#      - name: xArchive test
-#        run : |
-#          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
-#
-#      - name: Export ipa
-#        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
-##        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
-#
+
+      - name: xArchive test
+        run : |
+          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
+
+      - name: Export ipa
+        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
+#        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
+
 #      - name: Publish iOS Artefacts
 #        uses: actions/upload-artifact@v1
 #        with:
