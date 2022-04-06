@@ -89,7 +89,7 @@ jobs:
     env:
       SHEME: Runner
       BUILD_CONFIGURATION: Debug
-      XC_VERSION: ${{ '13.3' }}
+      XC_VERSION: ${{ '13.2' }}
 
     steps:
       - name: Select latest Xcode
@@ -121,6 +121,7 @@ jobs:
         with:
           channel: 'stable'
 
+      - run: flutter clean
       - run: flutter pub get
       - run: flutter test
 
