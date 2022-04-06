@@ -121,7 +121,9 @@ jobs:
         with:
           channel: 'stable'
 
-      - run: flutter clean
+      - run: xcodebuild -create-xcframework -framework
+
+      #      - run: flutter clean
       - run: flutter pub get
       - run: flutter test
 
