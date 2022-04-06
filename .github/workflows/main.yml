@@ -77,6 +77,23 @@ jobs:
 
   #      - run: flutter build apk
 
+  spm-dep-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check Swift package dependencies
+        uses: MarcoEidinger/swift-package-dependencies-check@1.0.0
+        with:
+          isMutating: true
+      - name: Create Pull Request
+        if: failure()
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: 'chore: update package dependencies'
+          branch: updatePackageDepedencies
+          delete-branch: true
+          title: 'chore: update package dependencies'
+          body: ''
 
   build_ipa:
     name: set environment
@@ -99,11 +116,6 @@ jobs:
           xcode-version: latest-stable
 
       - uses: actions/checkout@v2
-
-      - name: Check Swift package dependencies
-        uses: MarcoEidinger/swift-package-dependencies-check@1.0.0
-        with:
-          isMutating: true
 
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
