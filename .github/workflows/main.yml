@@ -256,7 +256,7 @@ jobs:
           appId: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN}}
           groups: testers
-          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/temp.ipa
+          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/temp
 
 
 
