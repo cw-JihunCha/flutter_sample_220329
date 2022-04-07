@@ -217,12 +217,9 @@ jobs:
       - name: Export ipa
         run: |
           xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
-          cd ios
-          ls
-          cd ..
-          cd build
-          ls
-          cd ..
+
+      - name: Building IPA
+        run: flutter build ipa --debug --export-options-plist=ios/ExportOptions.plist
 
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
