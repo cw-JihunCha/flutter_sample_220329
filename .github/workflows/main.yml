@@ -216,7 +216,7 @@ jobs:
 
       - name: Export ipa
         run: |
-          xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath ios -allowProvisioningUpdates
+          xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
           cd ios
           ls
           cd ..
@@ -230,7 +230,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: debug-ios
-          path: build-output/ios
+          path: build/ipa/Apps/flutter_sample_220329.ipa
 
 
 ################################################
