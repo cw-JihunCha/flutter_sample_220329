@@ -208,7 +208,7 @@ jobs:
 #          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
 
       - name: Export ipa
-        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
+        run: xcodebuild -exportArchive -archivePath ios/xcarchive/app.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
 #      - name: Publish iOS Artefacts
