@@ -241,10 +241,10 @@ jobs:
           name: release_ios
           path: build/ios/ipa/Apps/flutter_sample_220329.ipa
 
-      - name: check
-        run: |
-          cd build/ios/ipa/Apps/flutter_sample_220329.ipa
-          ls
+#      - name: check
+#        run: |
+#          cd build/ios/ipa/Apps/flutter_sample_220329.ipa
+#          ls
 
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
@@ -252,7 +252,7 @@ jobs:
           appId: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN}}
           groups: testers
-          file: build/ios/ipa/Apps/flutter_sample_220329.ipa
+          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/flutter_sample_220329.ipa
 
 
 
