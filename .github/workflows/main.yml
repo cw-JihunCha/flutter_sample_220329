@@ -219,8 +219,8 @@ jobs:
         run: |
           xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
 
-#      - name: Building IPA
-#        run: flutter build ipa --debug --export-options-plist=ios/ExportOptions.plist
+      - name: Building IPA
+        run: flutter build ipa --debug --export-options-plist=ios/ExportOptions.plist
 
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
@@ -228,7 +228,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: debug-ios
-          path: flutter_sample_220329.ipa
+          path: build/ios/ipa/Apps/flutter_sample_220329.ipa
 
 
 ################################################
