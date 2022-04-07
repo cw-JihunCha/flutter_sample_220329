@@ -246,13 +246,17 @@ jobs:
 #          cd build/ios/ipa/Apps/flutter_sample_220329.ipa
 #          ls
 
+      - uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq build/ios/ipa/Apps/flutter_sample_220329.ipa/flutter_sample_220329.ipa -d build/ios/ipa/Apps/flutter_sample_220329.ipa/temp
+
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
           appId: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN}}
           groups: testers
-          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/flutter_sample_220329.ipa
+          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/temp.ipa
 
 
 
