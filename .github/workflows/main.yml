@@ -207,7 +207,7 @@ jobs:
           xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration Debug -archivePath ios/xcarchive
           cd ios
           ls
-          cd..
+          cd ..
           cd build
           ls
 
@@ -215,7 +215,7 @@ jobs:
 
       - name: Export ipa
         run: |
-          xcodebuild -exportArchive -archivePath build/ios/xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
+          xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
           pwd
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
