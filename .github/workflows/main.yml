@@ -255,7 +255,7 @@ jobs:
       - name: Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
         with:
-          appId: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
+          appId: ${{ secrets.IOS_FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN}}
           groups: testers
           file: build/ios/ipa/Apps/flutter_sample_220329/flutter_sample_220329.ipa
