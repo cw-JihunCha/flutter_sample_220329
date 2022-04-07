@@ -204,7 +204,7 @@ jobs:
 
       - name: xArchive test
         run : |
-          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug -archivePath ios/xcarchive
+          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration Debug -archivePath ios/xcarchive
           cd ios/xcarchive
           ls
 #          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
