@@ -215,7 +215,7 @@ jobs:
 
       - name: Export ipa
         run: |
-          xcodebuild -exportArchive -archivePath ios/xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
+          xcodebuild -exportArchive -archivePath build/ios/xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
           pwd
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
