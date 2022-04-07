@@ -205,6 +205,18 @@ jobs:
       - name: xArchive test
         run : |
           xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration Debug -archivePath ios/xcarchive
+#          cd ios
+#          ls
+#          cd ..
+#          cd build
+#          ls
+#          cd ..
+
+#          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
+
+      - name: Export ipa
+        run: |
+          xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath ios -allowProvisioningUpdates
           cd ios
           ls
           cd ..
@@ -212,19 +224,13 @@ jobs:
           ls
           cd ..
 
-#          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -sdk 'iphoneos' -configuration Debug archive -archivePath build-output/app.xcarchive
-
-      - name: Export ipa
-        run: |
-          xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
-          pwd
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
-#      - name: Publish iOS Artefacts
-#        uses: actions/upload-artifact@v1
-#        with:
-#          name: debug-ios
-#          path: build-output/ios
+      - name: Publish iOS Artefacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: debug-ios
+          path: build-output/ios
 
 
 ################################################
