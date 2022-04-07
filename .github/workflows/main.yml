@@ -243,7 +243,7 @@ jobs:
 
       - name: check
         run: |
-          cd build/ios/ipa/Apps
+          cd build/ios/ipa/Apps/flutter_sample_220329.ipa
           ls
 
       - name: Firebase App Distribution
