@@ -105,7 +105,7 @@ jobs:
 
     env:
       SHEME: Runner
-      BUILD_CONFIGURATION: Debug
+      BUILD_CONFIGURATION: Release
       XC_VERSION: ${{ '13.2' }}
 
     steps:
@@ -190,7 +190,7 @@ jobs:
 #####################################################
 
       - name: Build Flutter
-        run: flutter build ios --debug --no-codesign
+        run: flutter build ios --release --no-codesign
 
       - name: Build resolve Swift dependencies
         run: xcodebuild -resolvePackageDependencies -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }}
@@ -205,7 +205,7 @@ jobs:
 
       - name: xArchive test
         run : |
-          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration Debug -archivePath ios/xcarchive
+          xcodebuild clean archive -workspace ios/Runner.xcworkspace -scheme ${{ env.SHEME }} -configuration ${{ env.BUILD_CONFIGURATION }} -archivePath ios/xcarchive
 #          cd ios
 #          ls
 #          cd ..
@@ -220,14 +220,14 @@ jobs:
           xcodebuild -exportArchive -archivePath ios/xcarchive.xcarchive -exportOptionsPlist ios/ExportOptions.plist -exportPath . -allowProvisioningUpdates
 
       - name: Building IPA
-        run: flutter build ipa --debug --export-options-plist=ios/ExportOptions.plist
+        run: flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
 
 #        run: xcodebuild -exportArchive -archivePath build-output/app.xcarchive -exportPath build-output/ios -exportOptionsPlist ios/ExportOptions.plist
 
       - name: Publish iOS Artefacts
         uses: actions/upload-artifact@v1
         with:
-          name: debug-ios
+          name: release_ios
           path: build/ios/ipa/Apps/flutter_sample_220329.ipa
 
 
