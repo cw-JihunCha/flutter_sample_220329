@@ -239,24 +239,26 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: release_ios
-          path: build/ios/ipa/Apps/flutter_sample_220329.ipa
+          path: build/ios/ipa/Apps/flutter_sample_220329.zip
 
-#      - name: check
-#        run: |
-#          cd build/ios/ipa/Apps/flutter_sample_220329.ipa
-#          ls
+      - name: check
+        run: |
+          cd build/ios/ipa/Apps
+          ls
+          cd flutter_sample_220329.zip
+          ls
 
-      - uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq build/ios/ipa/Apps/flutter_sample_220329.ipa/flutter_sample_220329.ipa -d build/ios/ipa/Apps/flutter_sample_220329.ipa/temp.ipa
-
-      - name: Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
-        with:
-          appId: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
-          token: ${{ secrets.FIREBASE_TOKEN}}
-          groups: testers
-          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/temp.ipa
+#      - uses: montudor/action-zip@v1
+#        with:
+#          args: unzip -qq build/ios/ipa/Apps/flutter_sample_220329.ipa/flutter_sample_220329.ipa -d build/ios/ipa/Apps/flutter_sample_220329.ipa/temp.ipa
+#
+#      - name: Firebase App Distribution
+#        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+#        with:
+#          appId: ${{ secrets.ANDROID_FIREBASE_APP_ID }}
+#          token: ${{ secrets.FIREBASE_TOKEN}}
+#          groups: testers
+#          file: build/ios/ipa/Apps/flutter_sample_220329.ipa/temp.ipa
 
 
 
