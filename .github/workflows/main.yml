@@ -124,6 +124,7 @@ jobs:
       #      - run: rm -r ~/.pub-cache
       #      - run: xcodebuild -create-xcframework -framework
 
+      # The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
       - name: pod install
         run: |
           cd ios
@@ -227,7 +228,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: debug-ios
-          path: build/ipa/Apps/flutter_sample_220329.ipa
+          path: flutter_sample_220329.ipa
 
 
 ################################################
